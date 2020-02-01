@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+	<title>User Title Generator</title>
+	
+	<script type="text/javascript" async="" src="./js/ga.js"></script><script type="text/javascript" src="./js/jquery.min.js"></script>	
+	
+	<link rel="stylesheet" href="./css/reset.css" type="text/css" media="screen">
+	<link rel="stylesheet" href="./css/style.css" type="text/css" media="screen">
+	
+
+</head>
+<body>
+	<div class="header">
+
+		<div class="logo">
+			<a href="/#"><img src="./images/logo.png" border="0"></a>
+		</div>
+	</div>
+	<div class="container">
+		<div class="form">
+			<label for="txt_message" id="lbl_message" class="label">User title:</label>
+			<input type="text" name="txt_message" id="txt_message" class="textbox" value="User title" title="Enter your user title text" style="color: black;">
+
+			<!-- clear_left -->
+			<div class="clear_left"></div>
+			<label for="ddl_color" id="lbl_color" class="label">Color:</label>
+			<select name="ddl_color" id="ddl_color" class="selectbox" title="Select Custom to enter a custom color">
+				<option value="#000000">Black</option>
+				<option value="#FFFFFF">White</option>
+				<option value="#808080">Gray</option>
+
+				<option value="#C0C0C0">Silver</option>
+				<option value="#FF0000" selected="">Red</option>
+				<option value="#FFFF00">Yellow</option>
+				<option value="#008000">Green</option>
+				<option value="#00FF00">Lime</option>
+				<option value="#008080">Teal</option>
+
+				<option value="#00FFFF">Aqua</option>
+				<option value="#000080">Navy</option>
+				<option value="#0000FF">Blue</option>
+				<option value="#800080">Purple</option>
+				<option value="#FF00FF">Fuschia</option>
+				<option value="custom">Custom</option>
+
+			</select>
+			<!-- clear_left -->
+			<div class="clear_left"></div>
+			<label for="txt_custom" id="lbl_custom" class="label" style="display: none;">Custom:</label>
+			<input type="text" name="txt_custom" id="txt_custom" class="textbox" value="#000000" title="Enter a custom color" style="display: none;">			
+			<!-- clear_left -->
+			<div class="clear_left"></div>
+			<label for="txt_glow" id="lbl_glow" class="label">Glow Color:</label>
+
+			<input type="text" name="txt_glow" id="txt_glow" class="textbox" value="Leave empty for no glow" title="Specify a glow color should you want a fancy effect" style="color: black;">
+			<!-- clear_left -->
+			<div class="clear_left"></div>
+			<!-- option -->
+			<div class="option">
+				<input type="checkbox" name="chk_bold" id="chk_bold" class="checkbox" checked="" title="Make your text Bold">Bold
+			</div>
+			<!-- option -->
+			<div class="option">
+
+				<input type="checkbox" name="chk_italic" id="chk_italic" class="checkbox" title="Make your text Italic">Italic
+			</div>
+			<!-- option -->
+			<div class="option">
+				<input type="checkbox" name="chk_underlined" id="chk_underlined" class="checkbox" title="Underline your text, cannot be underlined if striked out">Underlined
+			</div>
+			<!-- option -->
+			<div class="option">
+				<input type="checkbox" name="chk_striked" id="chk_striked" class="checkbox" title="Strike out your text, cannot be striked if underlined">Striked
+			</div>
+
+			<!-- option -->
+			<div class="option">
+				<input type="checkbox" name="chk_marquee" id="chk_marquee" class="checkbox" title="Scroll your text">Marquee
+			</div>
+			<!-- option -->
+			<div class="option">
+				<input type="checkbox" name="chk_blink" id="chk_blink" class="checkbox" title="Make your text blink, does not work on some versions of FireFox">Blink
+			</div>
+			<!-- clear_left -->
+			<div class="clear_left"></div>
+
+			<input type="button" value="Generate" id="btn_generate" name="btn_generate" class="button" title="Generate your usertitle">
+			<!-- clear_left -->
+			<div class="clear_left"></div>
+			<label for="txt_output" id="lbl_output" class="label">Output:</label>
+			<!-- clear_left -->
+			<div class="clear_left"></div>
+			<input type="text" name="txt_output" id="txt_output" class="textbox" value="&lt;span style=&quot;color:red;&quot;&gt;User title&lt;/span&gt;">
+			<!-- clear_left -->
+
+			<div class="clear_left"></div>
+			<label id="lbl_preview" class="label">Preview:</label>
+			<!-- clear_left -->
+			<div class="clear_left"></div>
+			<p id="output_area"><span style="color:#FFFFFF;">Ghost Kings</span></p>
+		</div>
+	</div>
+	<script type="text/javascript">		
+		$(document).ready(function() {
+			rebuild();
+		});
+		$('#lbl_custom').hide();
+		$('#txt_custom').hide();
+		var glowReset = false;
+		var titleReset = false;
+		$('#ddl_color').change(function() {
+			if ($('#ddl_color').val() == 'custom') {
+				$('#lbl_custom').show();
+				$('#txt_custom').show();
+			} else {
+				$('#lbl_custom').hide();
+				$('#txt_custom').hide();
+			}
+			rebuild();
+		});
+		$(':checkbox').click(function() {
+			rebuild();
+		});
+		$('#chk_striked').click(function() {
+			if ($(this).is(':checked')) {
+				$('#chk_underlined').attr('disabled', true);
+			} else {
+				$('#chk_underlined').removeAttr('disabled');
+			}
+		});
+		$('#chk_underlined').click(function() {
+			if ($(this).is(':checked')) {
+				$('#chk_striked').attr('disabled', true);
+			} else {
+				$('#chk_striked').removeAttr('disabled');
+			}
+		});
+		$('#txt_message').change(function() {
+			rebuild();
+		});
+		$('#txt_glow').change(function() {
+			rebuild();
+		});
+		$('#txt_custom').change(function() {
+			rebuild();
+		});
+		$('#txt_glow').focus(function() {
+			if (!glowReset) {
+				$('#txt_glow').val('');
+				$('#txt_glow').css('color', 'black');
+				glowReset = true;
+			}
+		});
+		$('#txt_message').focus(function() {
+			if (!titleReset) {
+				$('#txt_message').val('');
+				$('#txt_message').css('color', 'black');
+				titleReset = true;
+			}
+		});
+		$('#txt_output').click(function() {
+			$('#txt_output').focus();
+			$('#txt_output').select();
+		});
+		$('#btn_generate').click(function() {
+			rebuild();
+		});
+		function rebuild() {
+			var output = '<span style="';
+			var color = $('#ddl_color').val();
+			if (color == 'custom') {
+				color = $('#txt_custom').val();
+			}
+			if (color != '' && color != 'default') {
+				output += 'color:' + color + ';';
+			}
+			var bold = $('#chk_bold').is(':checked');
+			if (bold) {
+				output += 'font-weight:bold;';
+			}
+			var italic = $('#chk_italic').is(':checked');
+			if (italic) {
+				output += 'font-style:italic;';
+			}
+			var underlined = $('#chk_underlined').is(':checked');
+			var striked = $('#chk_striked').is(':checked');
+			if (underlined) {
+				output += 'text-decoration:underline;';
+			} else if (striked) {
+				output += 'text-decoration:line-through;';
+			}
+			var glowColor = $('#txt_glow').val();
+			if (glowColor != '' && glowColor != 'Leave empty for no glow') {
+				output += 'text-shadow: 0px 0px 3px ' + glowColor + ';';
+			}
+			output += '">';			
+			var marquee = $('#chk_marquee').is(':checked');
+			if (marquee) {
+				output += "<marquee>";
+			}
+			var blink = $('#chk_blink').is(':checked');
+			if (blink) {
+				output += "<blink>";
+			}
+			output += $('#txt_message').val();
+			if (blink) {
+				output += "</blink>";
+			}
+			if (marquee) {
+				output += "</marquee>";
+			}
+			output += "</span>";
+			$('#txt_output').val(output);
+			$('#output_area').html(output);
+		}
+	</script>
+	
+</body></html>

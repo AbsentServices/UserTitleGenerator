@@ -1,0 +1,72 @@
+body {
+	font-size: 62.5%;
+	font-family: Arial, Verdana, Sans-Serif;
+	color: #848484;
+	background: #1b1b1b;
+}
+.container {
+	width: 960px;
+	margin: 20px auto 0 auto;	
+}
+.header {
+	height: 90px;
+	background: url('http://www.rune-server.org/images/bluefox/misc/nav_bg.gif');
+}
+.header .logo {
+	height: 90px;
+	width: 400px;
+	margin:0 auto;
+}
+.form {
+	width: 350px; 
+	display: block;
+	margin: 0 auto;
+}
+label, input, select {
+	margin-bottom: 10px;
+}
+.label, .textbox, .selectbox {
+	display: inline;
+	float: left;
+	width: 190px;
+}
+.option {
+	width: 150px;
+	display: inline;
+	float:left;
+	font-size: 1.2em;
+	margin: 0 auto;
+}
+.textbox, .selectbox {
+	padding: 2px;
+}
+.option input {
+	margin: 0 10px 10px 10px;
+}
+.selectbox {
+	width: 194px;
+}
+.label {
+	font-size:1.2em;
+	padding-top:5px;
+	width: 100px;
+}
+#txt_glow, #txt_message {
+	color:#666666;
+}
+#txt_output {
+	width:300px;
+}
+#output_area {
+	font-size:1.2em;
+	margin-bottom: 20px;
+}
+.button {
+	display: block;
+	width: 100px;
+	height: 50px;
+	margin: 0 auto 0 auto;
+}
+.clear_left {
+	clear: left;
+}
