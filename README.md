@@ -6,6 +6,6 @@ Simple HTML user title generator. Do as you wish with this.
 
 
 
-## Demo
-http://absentplays.com/demo/UserTitleGenerator
+## Links
+* [Demo](http://absentplays.com/demo/UserTitleGenerator)
 
