@@ -7,5 +7,5 @@ Simple HTML user title generator. Do as you wish with this.
 
 
 ## Demo
-http://absentplays.com/demo/usertitlegenertaor
+https://absentservices.xyz/usertitlegen/
 
