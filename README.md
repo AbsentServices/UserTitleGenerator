@@ -6,6 +6,6 @@ Simple HTML user title generator. Do as you wish with this.
 
 
 
-## Demo
-* [Demo](https://absentservices.github.io/UserTitleGenerator)
+## Site
+* [Website](https://absentservices.github.io/UserTitleGenerator)
 
